@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COSMO Aerospace · Reto F1025B · Tecnológico de Monterrey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { ink: '#0E2238', paper: '#F4F7FA', line: '#D5DEE8', blue: '#1D4ED8', signal: '#E8590C' },
+  fontFamily: { display: ['"Space Grotesk"', 'system-ui', 'sans-serif'], sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'], mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'] }
+} } };
+</script>
+<style>
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { background: #F4F7FA; color: #0E2238; }
+  .t { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .95rem; }
+  .t th { text-align: left; font-weight: 600; padding: .65rem .9rem; background: #E3EAF2; white-space: nowrap; }
+  .t td { padding: .65rem .9rem; border-top: 1px solid #D5DEE8; font-variant-numeric: tabular-nums; }
+  .t tbody tr:hover { background: #EAF0F6; }
+  .nav a { padding: .4rem .7rem; border-radius: .4rem; white-space: nowrap; color: #4A5E73; font-size: .9rem; }
+  .nav a:hover, .nav a.on { color: #0E2238; background: #E3EAF2; }
+  .nav a:focus-visible, a:focus-visible { outline: 2px solid #1D4ED8; outline-offset: 2px; }
+  .nav { scrollbar-width: none; }
+  pre code { font-family: 'IBM Plex Mono', monospace; }
+  .k { color: #7FB0FF; } .c { color: #7C93AB; } .s { color: #F2A36B; }
+</style>
+</head>
+<body class="font-sans antialiased leading-relaxed">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
+  <div class="max-w-5xl mx-auto px-5 h-14 flex items-center gap-4">
+    <a href="#portada" class="font-display font-bold text-lg shrink-0">COSMO Aerospace</a>
+    <nav class="nav flex gap-1 overflow-x-auto ml-auto" aria-label="Secciones">
+      <a href="#identidad">Identidad</a>
+      <a href="#centro-masa">Centro de masa</a>
+      <a href="#centro-presion">Centro de presión</a>
+      <a href="#estaticas">Pruebas estáticas</a>
+      <a href="#telemetria">Telemetría</a>
+      <a href="#conclusiones">Conclusiones</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- PORTADA -->
+<section id="portada" class="relative bg-ink text-white pt-14 overflow-hidden">
+  <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 680 Q 450 -260 900 680" fill="none" stroke="#7FB0FF" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <circle cx="450" cy="210" r="6" fill="#E8590C"/>
+  </svg>
+  <div class="relative max-w-5xl mx-auto px-5 py-20 md:py-28">
+    <p class="text-slate-300">Tecnológico de Monterrey, Campus Guadalajara</p>
+    <h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.05] mt-4">“Diseño exacto.<br>Vuelo infinito.”</h1>
+    <p class="mt-6 text-xl text-slate-200">COSMO Aerospace · Reto final</p>
+    <dl class="mt-14 grid md:grid-cols-2 gap-x-12 gap-y-6 text-slate-200">
+      <div><dt class="text-slate-400 text-sm">Materia</dt><dd class="text-lg">Leyes del movimiento y de conservación (F1025B)</dd></div>
+      <div><dt class="text-slate-400 text-sm">Fecha de entrega</dt><dd class="text-lg">13/10/2026</dd></div>
+      <div class="md:col-span-2"><dt class="text-slate-400 text-sm">Integrantes</dt>
+        <dd class="mt-2 grid sm:grid-cols-2 gap-3 text-lg">
+          <span>Ismael Solís González<br><span class="text-sm text-slate-400">Matrícula: A01985836</span></span>
+          <span>Máximo de Jesús García González<br><span class="text-sm text-slate-400">Matrícula: A01986140</span></span>
+          <span>Fernando Basauri Herrera<br><span class="text-sm text-slate-400">Matrícula: A01644747</span></span>
+          <span>Máximo Ramsés Arias Jaime<br><span class="text-sm text-slate-400">Matrícula: A01985334</span></span>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- SECCIÓN 1 -->
+<section id="identidad" class="scroll-mt-14 py-20 px-5">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">1. Identidad corporativa y propuesta de misión aeroespacial</h2>
+    <p class="mt-3 text-lg text-slate-600 max-w-2xl">COSMO Aerospace es una agencia aeroespacial estudiantil que diseña, prototipa y lanza cohetes.</p>
+
+    <dl class="mt-10 divide-y divide-line border-y border-line">
+      <div class="py-5 grid md:grid-cols-[10rem_1fr] gap-2"><dt class="font-display font-bold text-lg">Misión</dt><dd>Diseñar, prototipar y lanzar cohetes neumáticos y químicos eficientes usando CAD y manufactura aditiva para plataformas seguras en entornos académicos.</dd></div>
+      <div class="py-5 grid md:grid-cols-[10rem_1fr] gap-2"><dt class="font-display font-bold text-lg">Visión</dt><dd>Ser la agencia aeroespacial estudiantil líder en innovación aerodinámica, eficiencia y diseño modular.</dd></div>
+      <div class="py-5 grid md:grid-cols-[10rem_1fr] gap-2"><dt class="font-display font-bold text-lg">Valores</dt>
+        <dd><ul class="space-y-1"><li>Innovación técnica</li><li>Precisión y seguridad</li><li>Sostenibilidad: uso de bioplásticos PLA y PETG</li></ul></dd></div>
+    </dl>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Organigrama del equipo</h3>
+    <div class="mt-6 flex flex-col items-center">
+      <div class="bg-ink text-white rounded-md px-6 py-3 font-display font-bold">COSMO Aerospace</div>
+      <div class="w-px h-6 bg-slate-400"></div>
+      <div class="w-full grid sm:grid-cols-2 lg:grid-cols-4 gap-4 border-t border-slate-400 pt-6">
+        <div class="border-l-4 border-blue bg-white p-4"><p class="font-display font-bold">Ismael Solís</p><p class="text-blue font-medium">Ingeniería y diseño</p><p class="text-sm text-slate-600 mt-1">CAD, modelado 3D y manufactura aditiva.</p></div>
+        <div class="border-l-4 border-blue bg-white p-4"><p class="font-display font-bold">Máximo García</p><p class="text-blue font-medium">Ciencia e investigación</p><p class="text-sm text-slate-600 mt-1">Cálculos de gravedad y presión, sistemas de propulsión.</p></div>
+        <div class="border-l-4 border-blue bg-white p-4"><p class="font-display font-bold">Fernando Basauri</p><p class="text-blue font-medium">Comunicación y gestión</p><p class="text-sm text-slate-600 mt-1">Planificación, cronogramas y documentación.</p></div>
+        <div class="border-l-4 border-blue bg-white p-4"><p class="font-display font-bold">Máximo Arias</p><p class="text-blue font-medium">Gestor de calidad</p><p class="text-sm text-slate-600 mt-1">Supervisión de procesos, revisión y seguridad.</p></div>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Tecnología</h3>
+    <div class="mt-5 grid md:grid-cols-2 gap-6">
+      <div class="border-t-2 border-blue pt-3"><p class="font-display font-bold text-xl">Series N</p><p>Vehículos neumáticos.</p></div>
+      <div class="border-t-2 border-signal pt-3"><p class="font-display font-bold text-xl">Series Q</p><p>Vehículos químicos.</p></div>
+    </div>
+
+    <div class="mt-14 bg-ink text-white rounded-md p-8">
+      <h3 class="font-display font-bold text-2xl">Propuesta de misión: “Exploración Dionicio”</h3>
+      <p class="mt-2 text-slate-200">Misión realizada con el cohete prototipo “Vergarus”.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2 -->
+<section id="centro-masa" class="scroll-mt-14 py-20 px-5 bg-white border-y border-line">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">2. Fundamentos experimentales del centro de masa (CM)</h2>
+
+    <h3 class="font-display font-bold text-2xl mt-10">Análisis 1D con regla y plastilina</h3>
+    <div class="mt-5 overflow-x-auto border border-line rounded-md">
+      <table class="t">
+        <thead><tr><th>Prueba</th><th>Posición (cm)</th><th>Masa (g)</th><th>Desplazamiento (cm)</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>15.0</td><td>0</td><td>0</td></tr>
+          <tr><td>1</td><td>12.0</td><td>5</td><td>3.0</td></tr>
+          <tr><td>2</td><td>10.0</td><td>10</td><td>5.0</td></tr>
+          <tr><td>3</td><td>9.7</td><td>15</td><td>5.3</td></tr>
+          <tr><td>4</td><td>9.3</td><td>20</td><td>5.7</td></tr>
+          <tr><td>5</td><td>9.0</td><td>25</td><td>6.0</td></tr>
+          <tr><td>6</td><td>8.7</td><td>30</td><td>6.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Swing test y carga útil</h3>
+    <p class="mt-2 text-slate-600">Posición del CM medida desde la punta del cono.</p>
+    <div class="mt-5 overflow-x-auto border border-line rounded-md">
+      <table class="t">
+        <thead><tr><th>Configuración</th><th>CM desde la punta (cm)</th><th>Avance respecto al cono vacío (cm)</th></tr></thead>
+        <tbody>
+          <tr><td>Cono vacío</td><td>33.0</td><td>0</td></tr>
+          <tr><td>Cono + 6.20 g</td><td>30.8</td><td>2.2</td></tr>
+          <tr><td>Cono + 12.40 g</td><td>28.8</td><td>4.2</td></tr>
+          <tr><td>Cono + 18.60 g</td><td>27.1</td><td>5.9</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Swing Test y configuraciones de carga útil</h3>
+    <div class="mt-5">
+      <figure class="w-full">
+        <img src="img/carga-util.jpg" alt="Diagramas de las 4 configuraciones de carga útil y desplazamiento del Centro de Masa" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-3 text-sm text-slate-600 text-center">Evolución del Centro de Masa (CM) al añadir masa de carga útil en la punta.</figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-10 border-l-4 border-blue bg-paper p-6">
+      <h3 class="font-display font-bold text-xl">Conclusión analítica</h3>
+      <p class="mt-2">Al concentrar mayor masa en la nariz, el centro de masa se desplaza hacia adelante, incrementando la estabilidad estática (efecto flecha).</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 3 -->
+<section id="centro-presion" class="scroll-mt-14 py-20 px-5">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">3. Determinación del centro de presión (CP)</h2>
+
+    <h3 class="font-display font-bold text-2xl mt-10">Método algorítmico (Python)</h3>
+    <div class="mt-5 rounded-md bg-ink text-slate-100 overflow-hidden">
+      <div class="px-5 py-2 text-sm text-slate-400 border-b border-white/10 font-mono">ProgramaParaCalcularCP.py</div>
+      <pre class="p-5 overflow-x-auto text-sm leading-relaxed"><code># ==========================================
+# 2. Variables con las dimensiones del cohete
+# ==========================================
+alto_cono = 9.0       
+ancho_cono =3.5       
+largo_cuerpo = 31.5    
+
+cuerda_aleta = 5.0    
+ancho_aleta = 2.5      
+numero_aletas = 4      
+
+factor_influencia = 1 + (numero_aletas * ancho_aleta) / (ancho_cono * 3)
+
+area_cono = (ancho_cono * alto_cono) / 2
+area_cuerpo = ancho_cono * largo_cuerpo
+
+area_una_aleta = cuerda_aleta * ancho_aleta
+area_aletas_total = area_una_aleta * numero_aletas
+
+area_aletas_efectiva = area_aletas_total * factor_influencia
+
+# 5. Ubicación de los Centroides (medidos desde la punta)
+x_cono = (2 / 3) * alto_cono
+x_cuerpo = alto_cono + (largo_cuerpo / 2)
+x_aletas = alto_cono + largo_cuerpo - cuerda_aleta/2
+
+# ==========================================
+numerador = (area_cono * x_cono) + (area_cuerpo * x_cuerpo) + (area_aletas_efectiva * x_aletas)
+denominador = area_cono + area_cuerpo + area_aletas_efectiva
+
+cp = numerador / denominador
+
+# ==========================================
+# 7. Impresión del valor final
+# ==========================================
+print(f"El Centro de Presión (CP) es: {cp:.2f}")</code></pre>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Método visual (Shadow Method)</h3>
+    <div class="mt-5 border-l-4 border-signal bg-white p-6 flex flex-wrap items-baseline gap-x-4">
+      <span class="font-display font-bold text-5xl">19.0 cm</span>
+      <span class="text-slate-600">Ubicación experimental del CP en el cohete.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 4 -->
+<section id="estaticas" class="scroll-mt-14 py-20 px-5 bg-white border-y border-line">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">4. Pruebas estáticas</h2>
+
+    <h3 class="font-display font-bold text-2xl mt-10">Calibración del sensor de fuerza</h3>
+    <div class="mt-5 overflow-x-auto border border-line rounded-md">
+      <table class="t">
+        <thead><tr><th>Objeto</th><th>Masa (kg)</th><th>F. calculada (N)</th><th>F. sensor (N)</th><th>Error</th></tr></thead>
+        <tbody>
+          <tr><td>Moneda $1 M.N.</td><td>0.039</td><td>0.0382</td><td>0.037</td><td>3.14 %</td></tr>
+          <tr><td>Cinta</td><td>0.1925</td><td>1.88</td><td>0.1246</td><td>93.37 %</td></tr>
+          <tr><td>Cuter</td><td>0.7990</td><td>7.83</td><td>0.7723</td><td>90.14 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Parámetros de las pruebas estáticas de empuje</h3>
+    <div class="mt-5 overflow-x-auto border border-line rounded-md">
+      <table class="t" style="min-width:44rem">
+        <thead><tr><th>Prueba</th><th>t inicio (s)</th><th>t final (s)</th><th>Δt (s)</th><th>F máx (N)</th><th>F prom (N)</th><th>Impulso, área (N·s)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>1.35</td><td>2.45</td><td>1.10</td><td>17.56</td><td>8.78</td><td>0.9448</td></tr>
+          <tr><td>2</td><td>1.35</td><td>2.45</td><td>1.10</td><td>17.56</td><td>8.78</td><td>0.9448</td></tr>
+          <tr><td>3</td><td>2.45</td><td>2.75</td><td>0.30</td><td>1.52</td><td>0.76</td><td>0.1040</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Gráficas de fuerza vs. tiempo</h3>
+    <div class="mt-5 grid gap-6 md:grid-cols-2 items-start">
+      <figure class="">
+        <img src="img/fuerza-1.png" alt="Gráfica de fuerza vs. tiempo de la prueba estática 1" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Prueba 1: fuerza (N) vs. tiempo (s).</figcaption>
+      </figure>
+      <figure class="">
+        <img src="img/fuerza-2.png" alt="Gráfica de fuerza vs. tiempo de la prueba estática 2" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Prueba 2: fuerza (N) vs. tiempo (s).</figcaption>
+      </figure>
+      <figure class="md:col-span-2 md:justify-self-center md:w-[calc(50%-0.75rem)]">
+        <img src="img/fuerza-3.png" alt="Gráfica de fuerza vs. tiempo de la prueba estática 3" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Prueba 3: fuerza (N) vs. tiempo (s).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 5 -->
+<section id="telemetria" class="scroll-mt-14 py-20 px-5">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">5. Telemetría y análisis de lanzamiento</h2>
+    <p class="mt-3 text-lg text-slate-600">Misión “Exploración Dionicio”</p>
+
+    <h3 class="font-display font-bold text-2xl mt-10">Ficha técnica</h3>
+    <dl class="mt-5 grid sm:grid-cols-3 gap-6">
+      <div class="border-t-2 border-ink pt-3"><dt class="text-slate-600">Cohete</dt><dd class="font-display font-bold text-2xl">“Vergarus”</dd></div>
+      <div class="border-t-2 border-ink pt-3"><dt class="text-slate-600">Masa total</dt><dd class="font-display font-bold text-2xl">20.07 g</dd></div>
+      <div class="border-t-2 border-ink pt-3"><dt class="text-slate-600">Presión</dt><dd class="font-display font-bold text-2xl">65 PSI</dd></div>
+    </dl>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Bitácora y telemetría de los 3 lanzamientos</h3>
+    <div class="mt-5 overflow-x-auto border border-line rounded-md">
+      <table class="t" style="min-width:56rem">
+        <thead><tr><th>Vuelo</th><th>t apogeo (s)</th><th>Radio de caída (m)</th><th>Dirección</th><th>v₀y (m/s)</th><th>y máx teórica (m)</th><th>y máx Tracker (m)</th><th>Diferencia</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>1.15</td><td>2.40</td><td>Noroeste (NE)</td><td>12.50</td><td>7.89</td><td>6.20</td><td>21.4 %</td></tr>
+          <tr><td>2</td><td>1.22</td><td>1.80</td><td>Norte (N)</td><td>13.33</td><td>8.97</td><td>7.10</td><td>20.8 %</td></tr>
+          <tr><td>3</td><td>1.18</td><td>3.10</td><td>Noroeste (NO)</td><td>12.82</td><td>8.30</td><td>6.60</td><td>20.5 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-sm text-slate-600">Diferencia = (y máx teórica − y máx Tracker) / y máx teórica.</p>
+
+    <h3 class="font-display font-bold text-2xl mt-14">Posición vs. tiempo (Tracker)</h3>
+    <div class="mt-5 grid gap-6 md:grid-cols-2 items-start">
+      <figure class="">
+        <img src="img/tracker-1.png" alt="Altura vs. tiempo del vuelo 1 (65 PSI) exportada de Tracker" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Vuelo 1: posición vs. tiempo (Tracker).</figcaption>
+      </figure>
+      <figure class="">
+        <img src="img/tracker-2.png" alt="Altura vs. tiempo del vuelo 2 (65 PSI) exportada de Tracker" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Vuelo 2: posición vs. tiempo (Tracker).</figcaption>
+      </figure>
+      <figure class="md:col-span-2 md:justify-self-center md:w-[calc(50%-0.75rem)]">
+        <img src="img/tracker-3.png" alt="Altura vs. tiempo del vuelo 3 (65 PSI) exportada de Tracker" loading="lazy" class="w-full h-auto rounded-md border border-line bg-white shadow-sm" onerror="this.style.display='none'">
+        <figcaption class="mt-2 text-sm text-slate-600 text-center">Vuelo 3: posición vs. tiempo (Tracker).</figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-10 border-l-4 border-blue bg-white p-6">
+      <h3 class="font-display font-bold text-xl">Discusión</h3>
+      <p class="mt-2">El valor teórico sobreestima la altura debido a la resistencia aerodinámica (arrastre) y la geometría de las hélices impresas en 3D.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 6 -->
+<section id="conclusiones" class="scroll-mt-14 py-20 px-5 bg-ink text-white">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">6. Conclusiones generales</h2>
+    <h3 class="font-display font-bold text-xl mt-8">Síntesis grupal</h3>
+    <p class="mt-3 text-lg text-slate-200">A través de la práctica, el equipo COSMO Aerospace comprobó cuantitativamente las Leyes de Newton y los principios de mecánica de fluidos en el cohete “Vergarus”, validando la importancia del margen de estabilidad estática entre CM y CP mediante herramientas experimentales y de software (Tracker).</p>
+  </div>
+</section>
+</main>
+
+<footer class="px-5 py-8 text-center text-sm text-slate-600">
+  COSMO Aerospace · Tecnológico de Monterrey, Campus Guadalajara · F1025B · 13/10/2026
+</footer>
+
+<script>
+  const links = [...document.querySelectorAll('.nav a')];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('main section[id]').forEach((s) => io.observe(s));
+</script>
+</body>
+</html>
